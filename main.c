@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "nrf_drv_twi.h"
 
+
 #include "SEGGER_RTT.h"
 #include "nrf_delay.h"
 #include "nrf_drv_gpiote.h"
@@ -45,11 +46,7 @@ int main(void)
 
     while (true)
     {
-			#ifdef DEBUG
-				//SEGGER_RTT_printf(0, "%04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d\r\n", readRegister16(0x04), readRegister16(0x06), readRegister16(0x08), readRegister16(0x0A), readRegister16(0x0C), readRegister16(0x0E), readRegister16(0x10), readRegister16(0x12), readRegister16(0x14), readRegister16(0x16), readRegister16(0x18), readRegister16(0x1A));
-				SEGGER_RTT_printf(0, " %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d  ", (readRegister8(0x1E) * 4), (readRegister8(0x1F) * 4), (readRegister8(0x20) * 4), (readRegister8(0x21) * 4), (readRegister8(0x22) * 4), (readRegister8(0x23) * 4), (readRegister8(0x24) * 4), (readRegister8(0x25) * 4), (readRegister8(0x26) * 4), (readRegister8(0x27) * 4), (readRegister8(0x28) * 4), (readRegister8(0x29) * 4));
-				SEGGER_RTT_printf(0, "%04x  \r\n ", readRegister16(MPR121_TOUCHSTATUS_L));
-			#endif
+			
     }
 }
 
