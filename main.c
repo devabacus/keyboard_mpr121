@@ -247,33 +247,33 @@ int main(void)
 	
 		writeRegister(MPR121_MHDF, 0x01);
 		writeRegister(MPR121_NHDF, 0x05);
-		writeRegister(MPR121_NCLF, 0x01);
+		writeRegister(MPR121_NCLF, 0xA0);
 		writeRegister(MPR121_FDLF, 0x00);
 			
-		writeRegister(MPR121_E0TTH , 0x50);
-		writeRegister(MPR121_E0RTH , 0x60);
+		writeRegister(MPR121_E0TTH , 0x70);
+		writeRegister(MPR121_E0RTH , 0x40);
 		writeRegister(MPR121_E1TTH , 0x50);
-		writeRegister(MPR121_E1RTH , 0x60);
+		writeRegister(MPR121_E1RTH , 0x40);
 		writeRegister(MPR121_E2TTH , 0x50);
-		writeRegister(MPR121_E2RTH , 0x60);
+		writeRegister(MPR121_E2RTH , 0x40);
 		writeRegister(MPR121_E3TTH , 0x50);
-		writeRegister(MPR121_E3RTH , 0x60);
+		writeRegister(MPR121_E3RTH , 0x40);
 		writeRegister(MPR121_E4TTH , 0x50);
-		writeRegister(MPR121_E4RTH , 0x60);
+		writeRegister(MPR121_E4RTH , 0x40);
 		writeRegister(MPR121_E5TTH , 0x50);
-		writeRegister(MPR121_E5RTH , 0x60);
+		writeRegister(MPR121_E5RTH , 0x40);
 		writeRegister(MPR121_E6TTH , 0x50);
-		writeRegister(MPR121_E6RTH , 0x60);
+		writeRegister(MPR121_E6RTH , 0x40);
 		writeRegister(MPR121_E7TTH , 0x50);
-		writeRegister(MPR121_E7RTH , 0x60);
+		writeRegister(MPR121_E7RTH , 0x40);
 		writeRegister(MPR121_E8TTH , 0x50);
-		writeRegister(MPR121_E8RTH , 0x60);	
+		writeRegister(MPR121_E8RTH , 0x40);	
 		writeRegister(MPR121_E9TTH , 0x40);
-		writeRegister(MPR121_E9RTH , 0x50);
+		writeRegister(MPR121_E9RTH , 0x30);
 		writeRegister(MPR121_E10TTH, 0x50);
-		writeRegister(MPR121_E10RTH, 0x60);
+		writeRegister(MPR121_E10RTH, 0x40);
 		writeRegister(MPR121_E11TTH, 0x50);
-		writeRegister(MPR121_E11RTH, 0x60);	
+		writeRegister(MPR121_E11RTH, 0x40);	
 			
 			
 				
@@ -284,9 +284,9 @@ int main(void)
 			
 //	  writeRegister(MPR121_AUTOCONFIG0, 0x8F);
 
-//		writeRegister(MPR121_UPLIMIT, 0xCA);
-//		writeRegister(MPR121_TARGETLIMIT, 0xB6);
-//		writeRegister(MPR121_LOWLIMIT, 0x83);
+//		writeRegister(MPR121_UPLIMIT, 0x9C);
+//		writeRegister(MPR121_TARGETLIMIT, 0x8C);
+//		writeRegister(MPR121_LOWLIMIT, 0x65);
 			
 		for (uint8_t i=0; i<0x7F; i++) 
 			{
@@ -300,10 +300,11 @@ int main(void)
 
     while (true)
     {
-			
-//			SEGGER_RTT_printf(0, "%04x   ", readRegister16(0x04));
-//			SEGGER_RTT_printf(0, "%02x   ", (readRegister8(0x1E) * 4));
-//			SEGGER_RTT_printf(0, "%04x  \r\n ", readRegister16(MPR121_TOUCHSTATUS_L));
+			#ifdef DEBUG
+			//SEGGER_RTT_printf(0, "%04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d\r\n", readRegister16(0x04), readRegister16(0x06), readRegister16(0x08), readRegister16(0x0A), readRegister16(0x0C), readRegister16(0x0E), readRegister16(0x10), readRegister16(0x12), readRegister16(0x14), readRegister16(0x16), readRegister16(0x18), readRegister16(0x1A));
+			SEGGER_RTT_printf(0, " %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d   %04d  ", (readRegister8(0x1E) * 4), (readRegister8(0x1F) * 4), (readRegister8(0x20) * 4), (readRegister8(0x21) * 4), (readRegister8(0x22) * 4), (readRegister8(0x23) * 4), (readRegister8(0x24) * 4), (readRegister8(0x25) * 4), (readRegister8(0x26) * 4), (readRegister8(0x27) * 4), (readRegister8(0x28) * 4), (readRegister8(0x29) * 4));
+			SEGGER_RTT_printf(0, "%04x  \r\n ", readRegister16(MPR121_TOUCHSTATUS_L));
+			#endif
       currtouched = touched();
 			
 			
