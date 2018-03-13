@@ -29,15 +29,11 @@ uint8_t readRegister8(uint8_t reg)
 uint16_t readRegister16(uint8_t reg)
 {
 	uint16_t rx_data;
-	uint8_t rx_data1 = 0;
-	uint8_t rx_data2 = 0;
+	uint8_t rx_data1[2];
 	nrf_drv_twi_tx(&_twi, _p_mpr->address, &reg, sizeof(reg), true);
-	nrf_drv_twi_rx(&_twi, _p_mpr->address, &rx_data1, sizeof(uint8_t));
-	reg = reg + 1;
-	nrf_drv_twi_tx(&_twi, _p_mpr->address, &reg, sizeof(reg), true);
-	nrf_drv_twi_rx(&_twi, _p_mpr->address, &rx_data2, sizeof(uint8_t));
-	rx_data	= rx_data1;
-	rx_data |= (rx_data2 << 8);
+	nrf_drv_twi_rx(&_twi, _p_mpr->address, rx_data1, sizeof(rx_data1));
+	rx_data	= rx_data1[0];
+	rx_data |= (rx_data1[1] << 8);
 	return rx_data;
 }
 
